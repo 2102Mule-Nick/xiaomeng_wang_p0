@@ -2,22 +2,24 @@ package com.revature.service;
 
 public class BankAccountServiceImpl implements BankAccountService {
 
-	@Override
-	public void withdraw(int accoundId, float total) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deposite(int accoundId, float total) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	float total = 0.0f;
 	@Override
 	public float checkBalance() {
 		// TODO Auto-generated method stub
-		return 0;
+		return total;
+	}
+
+	@Override
+	public void withdraw(float amount) {
+		// TODO Auto-generated method stub
+		total = total+ amount;
+	}
+
+	@Override
+	public void deposite(float amount) {
+		// TODO Auto-generated method stub
+		total = total -amount;
+		
 	}
 
 }

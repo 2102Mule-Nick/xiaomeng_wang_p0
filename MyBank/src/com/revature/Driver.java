@@ -6,10 +6,12 @@ import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoKryo;
 import com.revature.service.AuthService;
 import com.revature.service.AuthServiceImpl;
+import com.revature.ui.BankAccountMenu;
 import com.revature.ui.LoginMenu;
 import com.revature.ui.Menu;
 import com.revature.ui.RegistrationMenu;
 import com.revature.ui.WelcomeMenu;
+import com.revature.ui.WithdrawMenu;
 
 public class Driver {
 	
@@ -23,13 +25,19 @@ public static void main(String[] args) {
 		
 		Menu register = new RegistrationMenu();
 		
-		Menu login = new LoginMenu(authService);
+		Menu bankAccountMenu = new BankAccountMenu();
+//		Menu withdrawMenu = new WithdrawMenu();
+//		Menu depositMenu = new DepositMenu();
+		
+		Menu login = new LoginMenu(authService, bankAccountMenu);
 		
 		Menu welcomeMenu = new WelcomeMenu(login, register);
 		
 		((RegistrationMenu)register).setWelcomeMenu(welcomeMenu);
 		
 		((RegistrationMenu)register).setAuthService(authService);
+		
+		//((WithdrawnMenu)withdraw).setWelcomeMenu(welcomeMenu);
 		
 		login.setScanner(scan);
 		

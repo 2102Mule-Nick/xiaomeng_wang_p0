@@ -2,9 +2,10 @@ package com.revature.pojo;
 
 public class BankAccount {
 	
-	private int accountId; // default value = 0
+	private int accountId; 
 
-	private float total; // default value = 0.0
+	private int balance;
+	
 
 	public int getAccountId() {
 		return accountId;
@@ -14,19 +15,42 @@ public class BankAccount {
 		this.accountId = accountId;
 	}
 
-	public float getTotal() {
-		return total;
+	public int getBalance() {
+		return balance;
 	}
 
-	public void setTotal(float total) {
-		this.total = total;
-	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	} 
+	
+	//Function for Depositing money
+	public int deposit(int amount) {
+			if (amount != 0) {
+				 balance = balance + amount;
+				
+			}
+			return balance;
+		}
+		
+		//Function for Withdrawing money
+	public int withdraw(int amount) {
+			if (amount != 0) {
+				balance = balance - amount;
+				
+			}
+			return balance;
+		}
+	
 
-	public BankAccount(int accountId, float total) {
+	public BankAccount (int balance) {
 		super();
-		this.accountId = accountId;
-		this.total = total;
+		
+		this.balance = balance;
 	}
+
+	
+
+	
 
 	
 

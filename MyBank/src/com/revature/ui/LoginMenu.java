@@ -10,8 +10,13 @@ import com.revature.service.AuthService;
 public class LoginMenu implements Menu{
 	
 	private AuthService authService;
+	
+	private Menu nextMenu;
+	
+	private Menu bankAccountMenu;
 
 	private Scanner scan;
+	
 
 	public Scanner getScanner() {
 		return scan;
@@ -32,7 +37,7 @@ public class LoginMenu implements Menu{
 	@Override
 	public Menu advance() {
 		// TODO Auto-generated method stub
-		return null;
+		return nextMenu;
 	}
 
 	@Override
@@ -48,6 +53,9 @@ public class LoginMenu implements Menu{
 		try {
 			authService.authenticateUser(user);
 			System.out.println("Login successful");
+			
+			nextMenu = bankAccountMenu;
+			
 			//throw new Error();
 		} catch (UserNotFound e) {
 			System.out.println("Username does not exist.  Please register an account.");
@@ -56,9 +64,9 @@ public class LoginMenu implements Menu{
 		} catch (Exception e) {
 			System.out.println("Sorry, something went wrong. Please try again later.");
 			e.printStackTrace();
-		} finally {
-			System.out.println("Login Process Ended");
-		}
+		} //finally {
+			//System.out.println("Login Process Ended");
+		//}
 		
 	}
 
@@ -72,10 +80,13 @@ public class LoginMenu implements Menu{
 		super();
 	}
 
-	public LoginMenu(AuthService authService) {
+	public LoginMenu(AuthService authService, Menu bankAccountMenu) {
 		super();
 		this.authService = authService;
+		this.bankAccountMenu = bankAccountMenu;
 	}
+
+	
 
 
 }

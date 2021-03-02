@@ -21,7 +21,7 @@ public class WelcomeMenu implements Menu {
 	@Override
 	public void displayOptions() {
 		
-		System.out.println("Welcome to our Bank!");
+		System.out.println("****Welcome to our Bank!****");
 		System.out.println("Would you like to login or register?");
 		String answer = scan.nextLine();
 		
