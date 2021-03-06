@@ -1,25 +1,27 @@
 package com.revature.service;
 
+import com.revature.pojo.BankAccount;
+
 public class BankAccountServiceImpl implements BankAccountService {
 
-	float total = 0.0f;
 	@Override
-	public float checkBalance() {
+	public void withdraw(int accountId, int amount) {
 		// TODO Auto-generated method stub
-		return total;
-	}
-
-	@Override
-	public void withdraw(float amount) {
-		// TODO Auto-generated method stub
-		total = total+ amount;
-	}
-
-	@Override
-	public void deposite(float amount) {
-		// TODO Auto-generated method stub
-		total = total -amount;
+		BankAccount bankAccount = BankAccount.getAccountId()
 		
 	}
 
+	@Override
+	public void deposite(int accound, int amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int checkBalance() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 }

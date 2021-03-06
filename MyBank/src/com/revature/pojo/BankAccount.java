@@ -2,16 +2,16 @@ package com.revature.pojo;
 
 public class BankAccount {
 	
-	private int accountId; 
+	private String accountId; 
 
 	private int balance;
 	
 
-	public int getAccountId() {
+	public String getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(int accountId) {
+	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 
@@ -42,11 +42,30 @@ public class BankAccount {
 		}
 	
 
+	public BankAccount () {
+		super();
+		
+	}
+	
+	public BankAccount (String accountId) {
+		super();
+		
+		this.accountId = accountId;
+	}
+	
 	public BankAccount (int balance) {
 		super();
 		
 		this.balance = balance;
 	}
+
+	public BankAccount(String accountId, int balance) {
+		super();
+		this.accountId = accountId;
+		this.balance = balance;
+	}
+	
+	
 
 	
 

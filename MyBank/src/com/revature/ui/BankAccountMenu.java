@@ -30,7 +30,7 @@ public class BankAccountMenu implements Menu{
 		System.out.println("**** Welcome to the BankAccount ****");
 		char option = '\0';
 		Scanner scan = new Scanner(System.in);
-		BankAccount bankAccount = new BankAccount(option);
+		BankAccount bankAccount = new BankAccount();
 		
 		System.out.println("What would you like to do?");
 		System.out.println();
