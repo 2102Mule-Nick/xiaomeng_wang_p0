@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,6 +45,12 @@ public class UserDaoKryo implements UserDao {
 	@Override
 	public User getUserByUsername(String username) throws UserNotFound {
 		
+		String fileName = FOLDER_NAME + username + FILE_EXTENSION;
+		File file = new File(fileName);
+		if(!file.exists()) {
+			return null;
+		}
+		
 		try (FileInputStream inputStream = new FileInputStream(FOLDER_NAME + username + FILE_EXTENSION)) {
 			Input input = new Input(inputStream);
 			User user = kryo.readObject(input, User.class);
@@ -68,7 +75,7 @@ public class UserDaoKryo implements UserDao {
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void updateUser(User user,String password) {
 		// TODO Auto-generated method stub
 		
 	}
