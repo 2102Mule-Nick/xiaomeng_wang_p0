@@ -12,5 +12,9 @@ public interface AuthService {
 	public User authenticateUser(User user) throws InvalidPassword, UserNotFound;
 
 	public User registerUser(User user) throws UserNameTaken;
+	
+	public User updateUser(User user, String password);
+
+	public boolean removeUser(User user);
 
 }

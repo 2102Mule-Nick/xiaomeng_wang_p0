@@ -29,6 +29,7 @@ public static void main(String[] args) {
 		Menu register = new RegistrationMenu();
 		
 		Menu bankAccountMenu = new BankAccountMenu();
+		
 //		Menu withdrawMenu = new WithdrawMenu();
 //		Menu depositMenu = new DepositMenu();
 		

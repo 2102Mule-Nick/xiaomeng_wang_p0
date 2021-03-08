@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import org.apache.log4j.Logger;
+
 import com.revature.dao.UserDao;
 import com.revature.exception.InvalidPassword;
 import com.revature.exception.UserNameTaken;
@@ -7,6 +9,8 @@ import com.revature.exception.UserNotFound;
 import com.revature.pojo.User;
 
 public class AuthServiceImpl implements AuthService{
+	
+	Logger log = Logger.getRootLogger();
 	
 	private UserDao userDao;
 
@@ -21,8 +25,10 @@ public class AuthServiceImpl implements AuthService{
 	@Override
 	public boolean existingUser(User user) {
 		// TODO Auto-generated method stub
+		log.trace("AuthServiceImpl.existingUser method called");
 		try {
 			if (userDao.getUserByUsername(user.getUsername()) != null) {
+				log.info("getUserByUsername did not return null");
 				return true;
 			}
 		} catch (UserNotFound e) {
@@ -46,6 +52,7 @@ public class AuthServiceImpl implements AuthService{
 	@Override
 	public User registerUser(User user) throws UserNameTaken {
 		// TODO Auto-generated method stub
+		log.trace("AuthServiceImpl.registerUser method called");
 		userDao.createUser(user);
 		return user;
 	}
@@ -60,4 +67,20 @@ public class AuthServiceImpl implements AuthService{
 		this.userDao = userDao;
 	}
 
+	@Override
+	public User updateUser(User user, String password) {
+		// TODO Auto-generated method stub
+		log.info("Update User in Auth Service called");
+		userDao.updateUser(user, password);
+		return null;
+	}
+	
+	public boolean removeUser(User user) {
+
+		if (existingUser(user)) {
+			userDao.removeUser(user);
+			return true;
+		}
+		return false;
+	}
 }

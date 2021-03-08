@@ -36,8 +36,8 @@ public class BankAccountMenu implements Menu{
 		System.out.println();
 		System.out.println("A. Check your balance");
 		System.out.println("B. Make a deposit");
-		System.out.println("C. Make a withdrawal");
-		System.out.println("F. Exit");
+		System.out.println("C. Make a withdraw");
+		System.out.println("E. Exit");
 		
 		do {
 			System.out.println();
@@ -69,8 +69,8 @@ public class BankAccountMenu implements Menu{
 				System.out.println();
 				break;
 			
-			//Case 'F' exits the user from their account
-			case 'F':
+			//Case 'E' exits the user from their account
+			case 'E':
 				System.out.println("====================================");
 				break;
 			//The default case let's the user know that they entered an invalid character and how to enter a valid one
@@ -78,7 +78,7 @@ public class BankAccountMenu implements Menu{
 				System.out.println("Error: invalid option. Please enter A, B, C access services.");
 				break;
 			}
-		} while(option != 'F');
+		} while(option != 'E');
 		System.out.println("Thank you for banking with us!");
 	}
 
