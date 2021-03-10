@@ -13,7 +13,7 @@ public class LoginMenu implements Menu{
 	
 	private Menu nextMenu;
 	
-	private Menu bankAccountMenu;
+	private BankAccountMenu bankAccountMenu;
 
 	private Scanner scan;
 	
@@ -53,7 +53,7 @@ public class LoginMenu implements Menu{
 		try {
 			authService.authenticateUser(user);
 			System.out.println("Login successful");
-			
+			bankAccountMenu.setCurrentUser(user);
 			nextMenu = bankAccountMenu;
 			
 			//throw new Error();
@@ -80,7 +80,7 @@ public class LoginMenu implements Menu{
 		super();
 	}
 
-	public LoginMenu(AuthService authService, Menu bankAccountMenu) {
+	public LoginMenu(AuthService authService, BankAccountMenu bankAccountMenu) {
 		super();
 		this.authService = authService;
 		this.bankAccountMenu = bankAccountMenu;

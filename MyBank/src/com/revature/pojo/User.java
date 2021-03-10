@@ -5,6 +5,10 @@ public class User {
 	private String username;
 
 	private String password;
+	
+	private int id;
+	
+	
 
 	public String getUsername() {
 		return username;
@@ -22,6 +26,7 @@ public class User {
 		this.password = password;
 	}
 	
+
 	public User(String username, String password) {
 		super();
 		this.username = username;
@@ -37,4 +42,17 @@ public class User {
 		return "User [username=" + username + ", password=" + password + "]";
 	}
 
+	public void deposit(int amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		this.id = id;
+	}
+
+	public int getId() {
+		return this.id;
+	}
 }

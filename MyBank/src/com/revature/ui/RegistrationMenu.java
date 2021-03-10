@@ -31,10 +31,13 @@ public class RegistrationMenu implements Menu{
 		user.setUsername(scan.nextLine());
 		System.out.println("Please enter a new password:");
 		user.setPassword(scan.nextLine());
+
+		
 		if (!authService.existingUser(user)) {
 			try {
 				authService.registerUser(user);
 				nextMenu = null;
+				System.out.println("register success, please login!");
 			} catch (UserNameTaken e) {
 				System.out.println("Username taken, please try again");
 				nextMenu = welcomeMenu;

@@ -2,16 +2,25 @@ package com.revature.pojo;
 
 public class BankAccount {
 	
-	private String accountId; 
+	private int accountId; 
 
 	private int balance;
 	
+	private int userId;
+	
+	public int getUserId() {
+		return userId;
+	}
 
-	public String getAccountId() {
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(String accountId) {
+	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
 
@@ -24,46 +33,46 @@ public class BankAccount {
 	} 
 	
 	//Function for Depositing money
-	public int deposit(int amount) {
-			if (amount != 0) {
-				 balance = balance + amount;
-				
-			}
-			return balance;
-		}
-		
-		//Function for Withdrawing money
-	public int withdraw(int amount) {
-			if (amount != 0) {
-				balance = balance - amount;
-				
-			}
-			return balance;
-		}
+//	public int deposit(int amount) {
+//			if (amount != 0) {
+//				 balance = balance + amount;
+//				
+//			}
+//			user.setBalance(balance);
+//			return balance;
+//		}
+//		
+//		//Function for Withdrawing money
+//	public int withdraw(int amount) {
+//			if (amount != 0) {
+//				balance = balance - amount;
+//				
+//			}
+//			user.setBalance(balance);
+//			return balance;
+//		}
 	
 
-	public BankAccount () {
-		super();
-		
-	}
-	
-	public BankAccount (String accountId) {
-		super();
-		
-		this.accountId = accountId;
-	}
-	
-	public BankAccount (int balance) {
-		super();
-		
-		this.balance = balance;
-	}
 
-	public BankAccount(String accountId, int balance) {
-		super();
+
+	public BankAccount(int accountId, int balance) {
+		
 		this.accountId = accountId;
 		this.balance = balance;
 	}
+
+	public BankAccount() {
+		super();
+	}
+
+	public BankAccount(int accountId, int balance, int userId) {
+		super();
+		this.accountId = accountId;
+		this.balance = balance;
+		this.userId = userId;
+	}
+	
+	
 	
 	
 

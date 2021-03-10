@@ -2,6 +2,7 @@ package com.revature.ui;
 
 import java.util.Scanner;
 
+import com.revature.pojo.User;
 import com.revature.service.AuthService;
 
 public class UpdateMenu implements Menu{

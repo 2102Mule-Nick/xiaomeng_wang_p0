@@ -26,7 +26,7 @@ public class UserDaoPostgres implements UserDao {
 		
 		Connection conn = ConnectionFactoryPostgres.getConnection();
 		
-		String sql = "insert into bank (username, pass_word) values ('" + user.getUsername() + "', '" +user.getPassword() + "')";
+		String sql = "insert into user_acc (username, pass_word) values ('" + user.getUsername() + "', '" +user.getPassword() + "')";
 		
 		Statement stmt;
 		try {
@@ -57,7 +57,7 @@ public class UserDaoPostgres implements UserDao {
 			
 			//conn.setSchema(schema) default is public;
 			
-			String sql = "select * from bank where username = '" + username + "'" ;
+			String sql = "select * from user_acc where username = '" + username + "'" ;
 			
 			Statement stmt = conn.createStatement();
 			
@@ -68,6 +68,7 @@ public class UserDaoPostgres implements UserDao {
 				user = new User();
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("pass_word"));
+				user.setId(rs.getInt("user_id"));
 			}
 			
 			
@@ -87,7 +88,7 @@ public class UserDaoPostgres implements UserDao {
 	@Override
 	public void updateUser(User user,String new_password) {
 		// TODO Auto-generated method stub
-Connection conn = null;
+		Connection conn = null;
 		
 		PreparedStatement stmt = null;
 		

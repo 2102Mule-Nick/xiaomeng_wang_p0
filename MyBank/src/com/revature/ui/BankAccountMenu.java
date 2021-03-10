@@ -2,19 +2,21 @@ package com.revature.ui;
 
 import java.util.Scanner;
 
-import com.revature.pojo.BankAccount;
+import com.revature.pojo.User;
+import com.revature.service.BankAccountService;
+
 
 public class BankAccountMenu implements Menu{
-	
-	//private Menu nextMenu;
-	
-	//private Menu withdrawMenu;
-
-	//private Menu depositMenu;
 
 	private Scanner scan;
-
-	private BankAccount bankAccount;
+	private BankAccountService service;
+	
+	public BankAccountMenu(BankAccountService bankService) {
+		super();
+		this.service = bankService;
+	}
+	
+	private User currentUser;
 	
 	@Override
 	public Menu advance() {
@@ -24,14 +26,10 @@ public class BankAccountMenu implements Menu{
 
 	@Override
 	public void displayOptions() {
-		// TODO Auto-generated method stub
-		//BankAccount accoundId = new BankAccount(accountId);
 		
 		System.out.println("**** Welcome to the BankAccount ****");
 		char option = '\0';
-		Scanner scan = new Scanner(System.in);
-		BankAccount bankAccount = new BankAccount();
-		
+		try (Scanner scan = new Scanner(System.in)) {		
 		System.out.println("What would you like to do?");
 		System.out.println();
 		System.out.println("A. Check your balance");
@@ -49,8 +47,9 @@ public class BankAccountMenu implements Menu{
 			switch(option) {
 			//Case 'A' allows the user to check their account balance
 			case 'A':
+				
 				System.out.println("====================================");
-				System.out.println("Balance = $" + bankAccount.getBalance());
+				System.out.println("Balance = $" + service.checkBalance(getCurrentUser()));
 				System.out.println("====================================");
 				System.out.println();
 				break;
@@ -58,14 +57,14 @@ public class BankAccountMenu implements Menu{
 			case 'B':
 				System.out.println("Enter an amount to deposit: ");
 				int amount = scan.nextInt();
-				bankAccount.deposit(amount);
+				service.deposite(getCurrentUser(),amount);
 				System.out.println();
 				break;
 			//Case 'C' allows the user to withdraw money from their account using the 'withdraw' function
 			case 'C':
 				System.out.println("Enter an amount to withdraw: ");
 				int amount2 = scan.nextInt();
-				bankAccount.withdraw(amount2);
+				service.withdraw(getCurrentUser(), amount2);
 				System.out.println();
 				break;
 			
@@ -79,7 +78,9 @@ public class BankAccountMenu implements Menu{
 				break;
 			}
 		} while(option != 'E');
+		
 		System.out.println("Thank you for banking with us!");
+		}
 	}
 
 		
@@ -126,8 +127,13 @@ public class BankAccountMenu implements Menu{
 		
 	}
 	
-	public BankAccountMenu() {
-		super();
+
+	public void setCurrentUser(User user) {
+		this.currentUser=user;
+	}
+	
+	public User getCurrentUser() {
+		return this.currentUser;
 	}
 
 	

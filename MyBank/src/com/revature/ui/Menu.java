@@ -13,4 +13,5 @@ public interface Menu {
 	public Scanner getScanner();
 
 	public void setScanner(Scanner scan);
+	
 }

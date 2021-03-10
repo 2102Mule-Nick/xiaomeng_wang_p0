@@ -2,17 +2,20 @@ package com.revature;
 
 import java.util.Scanner;
 
+import com.revature.dao.BankAccountDao;
+import com.revature.dao.BankAccountDaoPostgres;
 import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoKryo;
 import com.revature.dao.UserDaoPostgres;
 import com.revature.service.AuthService;
 import com.revature.service.AuthServiceImpl;
+import com.revature.service.BankAccountService;
+import com.revature.service.BankAccountServiceImpl;
 import com.revature.ui.BankAccountMenu;
 import com.revature.ui.LoginMenu;
 import com.revature.ui.Menu;
 import com.revature.ui.RegistrationMenu;
 import com.revature.ui.WelcomeMenu;
-import com.revature.ui.WithdrawMenu;
 
 public class Driver {
 	
@@ -27,8 +30,9 @@ public static void main(String[] args) {
 		AuthService authService = new AuthServiceImpl(userDao);
 		
 		Menu register = new RegistrationMenu();
-		
-		Menu bankAccountMenu = new BankAccountMenu();
+		BankAccountDao bankDao = new BankAccountDaoPostgres();
+		BankAccountService bankService = new BankAccountServiceImpl(bankDao);
+		BankAccountMenu bankAccountMenu = new BankAccountMenu(bankService);
 		
 //		Menu withdrawMenu = new WithdrawMenu();
 //		Menu depositMenu = new DepositMenu();
