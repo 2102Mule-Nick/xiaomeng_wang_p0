@@ -18,26 +18,27 @@ import com.revature.util.ConnectionFactoryPostgres;
 public class UserDaoPostgres implements UserDao {
 	
 	Logger log = Logger.getRootLogger();
+	String INSERT_SMT = "insert into user_acc (username, pass_word) values (?, ?)";
+	
 
 	@Override
 	public void createUser(User user) throws UserNameTaken {
-		
-		log.trace("UserDaoPostgres.createUser method called");
-		
-		Connection conn = ConnectionFactoryPostgres.getConnection();
-		
-		String sql = "insert into user_acc (username, pass_word) values ('" + user.getUsername() + "', '" +user.getPassword() + "')";
-		
-		Statement stmt;
 		try {
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
-			conn.close();
+		Connection conn = ConnectionFactoryPostgres.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(INSERT_SMT, Statement.RETURN_GENERATED_KEYS);
+		  pstmt.setString(1, user.getUsername()); 
+		  
+			pstmt.setString(2, user.getPassword());
+		  pstmt.executeUpdate(); 
+		  
+		  //grab generated cart_id
+		  ResultSet rs = pstmt.getGeneratedKeys();
+		  rs.next();
+		  user.setId((int)rs.getLong(1));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 
 	@Override

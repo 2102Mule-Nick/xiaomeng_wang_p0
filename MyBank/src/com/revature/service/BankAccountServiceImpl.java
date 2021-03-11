@@ -45,9 +45,14 @@ public class BankAccountServiceImpl implements BankAccountService {
 			throw new RuntimeException(e);
 		}
 		int balance = account.getBalance();;
-		if (amount != 0) {
+		if (amount > 0) {
 			balance += amount;
-			
+			try {
+				dao.updateBalanceByAccountID(account.getAccountId(), balance);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return balance;
 	}

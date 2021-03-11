@@ -51,7 +51,7 @@ public class LoginMenu implements Menu{
 		User user = new User(username, password);
 		
 		try {
-			authService.authenticateUser(user);
+			user = authService.authenticateUser(user);
 			System.out.println("Login successful");
 			bankAccountMenu.setCurrentUser(user);
 			nextMenu = bankAccountMenu;

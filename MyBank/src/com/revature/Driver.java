@@ -5,7 +5,6 @@ import java.util.Scanner;
 import com.revature.dao.BankAccountDao;
 import com.revature.dao.BankAccountDaoPostgres;
 import com.revature.dao.UserDao;
-import com.revature.dao.UserDaoKryo;
 import com.revature.dao.UserDaoPostgres;
 import com.revature.service.AuthService;
 import com.revature.service.AuthServiceImpl;
@@ -29,23 +28,23 @@ public static void main(String[] args) {
 		
 		AuthService authService = new AuthServiceImpl(userDao);
 		
-		Menu register = new RegistrationMenu();
-		BankAccountDao bankDao = new BankAccountDaoPostgres();
-		BankAccountService bankService = new BankAccountServiceImpl(bankDao);
-		BankAccountMenu bankAccountMenu = new BankAccountMenu(bankService);
 		
-//		Menu withdrawMenu = new WithdrawMenu();
-//		Menu depositMenu = new DepositMenu();
+		
+		BankAccountDao bankDao = new BankAccountDaoPostgres();
+		
+		BankAccountService bankService = new BankAccountServiceImpl(bankDao);
+		
+		BankAccountMenu bankAccountMenu = new BankAccountMenu(bankService);
 		
 		Menu login = new LoginMenu(authService, bankAccountMenu);
 		
+		RegistrationMenu register = new RegistrationMenu(authService, bankService);
+	
 		Menu welcomeMenu = new WelcomeMenu(login, register);
 		
-		((RegistrationMenu)register).setWelcomeMenu(welcomeMenu);
+		register.setWelcomeMenu(welcomeMenu);
+	
 		
-		((RegistrationMenu)register).setAuthService(authService);
-		
-		//((WithdrawnMenu)withdraw).setWelcomeMenu(welcomeMenu);
 		
 		login.setScanner(scan);
 		

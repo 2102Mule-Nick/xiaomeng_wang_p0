@@ -17,7 +17,7 @@ public class BankAccountDaoPostgres implements BankAccountDao {
 	Logger log = Logger.getRootLogger();
 	
 	static final String INSERT_SMT = "insert into bank (user_id, balance) values(?, ?)";
-	static final String UPDATE_BALANCE_BY_ID = "update bank set balance = ? where user_id =? ";
+	static final String UPDATE_BALANCE_BY_ID = "update bank set balance = ? where bank_id =? ";
 
 
 
@@ -26,7 +26,7 @@ public class BankAccountDaoPostgres implements BankAccountDao {
 		Connection conn = ConnectionFactoryPostgres.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(INSERT_SMT, Statement.RETURN_GENERATED_KEYS);
 		  pstmt.setInt(1, bankAccount.getUserId()); 
-		  pstmt.setFloat(2, bankAccount.getBalance());
+		  pstmt.setInt(2, bankAccount.getBalance());
 		  pstmt.executeUpdate(); 
 		  
 		  //grab generated cart_id
@@ -79,7 +79,7 @@ public class BankAccountDaoPostgres implements BankAccountDao {
 			bankAccount = new BankAccount();
 			bankAccount.setAccountId(rs.getInt("bank_id"));
 			bankAccount.setUserId(rs.getInt("user_id"));
-			bankAccount.setBalance(rs.getInt("user_id"));
+			bankAccount.setBalance(rs.getInt("balance"));
 		}
 		
 		return bankAccount;

@@ -3,8 +3,10 @@ package com.revature.ui;
 import java.util.Scanner;
 
 import com.revature.exception.UserNameTaken;
+import com.revature.pojo.BankAccount;
 import com.revature.pojo.User;
 import com.revature.service.AuthService;
+import com.revature.service.BankAccountService;
 
 public class RegistrationMenu implements Menu{
 	
@@ -15,7 +17,14 @@ public class RegistrationMenu implements Menu{
 	private Scanner scan;
 
 	private AuthService authService;
-
+	
+	private BankAccountService bankAccountService;
+	
+	public RegistrationMenu(AuthService authService, BankAccountService bankAccountService) {
+		super();
+		this.authService = authService;
+		this.bankAccountService = bankAccountService;
+	}
 
 	@Override
 	public Menu advance() {
@@ -27,15 +36,20 @@ public class RegistrationMenu implements Menu{
 	public void displayOptions() {
 		// TODO Auto-generated method stub
 		User user = new User();
+		
 		System.out.println("Please enter a new username:");
 		user.setUsername(scan.nextLine());
 		System.out.println("Please enter a new password:");
 		user.setPassword(scan.nextLine());
-
 		
+
 		if (!authService.existingUser(user)) {
 			try {
 				authService.registerUser(user);
+				BankAccount bankAccount= new BankAccount();
+				bankAccount.setUserId(user.getId());
+				bankAccount.setBalance(0);
+				bankAccountService.createBankAccount(bankAccount);
 				nextMenu = null;
 				System.out.println("register success, please login!");
 			} catch (UserNameTaken e) {
@@ -72,11 +86,7 @@ public class RegistrationMenu implements Menu{
 		super();
 	}
 
-	public RegistrationMenu(AuthService authService, Menu welcomeMenu) {
-		super();
-		this.authService = authService;
-		this.welcomeMenu = welcomeMenu;
-	}
+
 
 	public Menu getWelcomeMenu() {
 		return welcomeMenu;

@@ -55,9 +55,9 @@ public class BankAccount {
 
 
 
-	public BankAccount(int accountId, int balance) {
+	public BankAccount(int userId, int balance) {
 		
-		this.accountId = accountId;
+		this.userId = userId;
 		this.balance = balance;
 	}
 
