@@ -1,0 +1,22 @@
+create table user_acc(
+	user_id serial primary key,
+	username text,
+	pass_word text
+);
+create table bank(
+	bank_id serial primary key,
+	user_id int references user_acc (user_id),
+	balance int
+);
+
+truncate bank;
+drop table bank;
+
+INSERT INTO user_acc (username, pass_word)
+VALUES ('Bill', 'b22');
+INSERT INTO user_acc (username, pass_word)
+VALUES ('Andy', 'a11');
+INSERT INTO user_acc (username, pass_word)
+VALUES ('Chloe', 'c33');
+
+select * from bank;
